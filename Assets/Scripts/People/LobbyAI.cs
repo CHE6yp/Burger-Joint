@@ -13,6 +13,7 @@ public class LobbyAI : AI {
     }
     public BotState state = BotState.Idle;
     public BotState previousState = BotState.Idle;
+    public BotState checkingStateDebug = BotState.Idle;
 
 
     public GameObject register;
@@ -102,7 +103,7 @@ public class LobbyAI : AI {
                 {
                     if (player.useBool && player.triggerObj == destination)
                     {
-                        player.Use(table.GetComponent<ItemPlace>().items[0].GetComponent<Usable>(),"Take");
+                        table.GetComponent<ItemPlace>().items[0].GetComponent<Placable>().Take(player);
 
                         garbage = JointManager.RandomGarbage();
                         state = BotState.ThrowTrash;
@@ -173,8 +174,16 @@ public class LobbyAI : AI {
         }
 
         //RotateTowards(destination.GetComponent<Transform>());
+        CheckStateSwitch();
     }
 
-
+    void CheckStateSwitch()
+    {
+        if (checkingStateDebug != state)
+        {
+            Debug.Log(gameObject.name + " state: " + state);
+            checkingStateDebug = state;
+        }
+    }
 
 }
