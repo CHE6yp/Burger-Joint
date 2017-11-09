@@ -25,6 +25,8 @@ public class BotAI : AI {
     public BotState previousState = BotState.Idle;
     public GameObject previousDestination;
 
+    public BotState checkingStateDebug = BotState.Idle;
+
     public int whereSpawned;
     public bool deciderFlag;
 
@@ -274,17 +276,28 @@ public class BotAI : AI {
                 break;
         }
 
-        
+        CheckStateSwitch();
         //RotateTowards(destination.GetComponent<Transform>());
+    }
+
+
+    void CheckStateSwitch()
+    {
+        if (checkingStateDebug != state)
+        {
+            Debug.Log(gameObject.name + " state: " + state);
+            checkingStateDebug = state;
+        }
     }
 
     IEnumerator TestCour()
     {
-        player.Use(foodUsa,"Eat"); //Eat
+        //player.Use(foodUsa,"Eat"); //Eat
+        foodUsa.GetComponent<Edible>().Eat(player);
         //table.GetComponent<ItemPlace>().items[0].GetComponent<ItemPlace>().items[0].GetComponent<Food>().Eat(player);
         yield return new WaitForSeconds(5);
         //table.GetComponent<ItemPlace>().items[0].GetComponent<ItemPlace>().items[0].GetComponent<Food>().Eat(player);
-        player.Use(foodUsa,"Eat"); //Eat
+        foodUsa.GetComponent<Edible>().Eat(player);
         foodUsa.GetComponent<Placable>().Place(salverUsa.GetComponent<ItemPlace>().items[0].GetComponent<ItemPlace>(), 0);
         
         state = BotState.Standing;

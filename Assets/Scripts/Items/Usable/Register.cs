@@ -102,7 +102,9 @@ public class Register : MonoBehaviour
             customer.GetComponent<BotAI>().salverUsa = itemPlace.items[0].GetComponent<Usable>();
             customer.GetComponent<BotAI>().foodUsa = 
                 itemPlace.items[0].GetComponent<ItemPlace>().items[0].GetComponent<ItemPlace>().items[0].GetComponent<Usable>();
-            customer.avUses.currentUses[GetComponent<ItemPlace>().items[0].GetComponent<Usable>()]["Take"](customer);
+            Debug.Log("TriggerObj -"+ customer.triggerObj);
+            itemPlace.items[0].GetComponent<Placable>().Take(customer);
+            Debug.Log(itemPlace.items[0]);
             //GetComponent<ItemPlace>().items[0]. (customer);
 
             customer = null;
