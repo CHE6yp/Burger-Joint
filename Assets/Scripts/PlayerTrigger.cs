@@ -16,7 +16,7 @@ public class PlayerTrigger : MonoBehaviour {
             
             Usable usable = other.gameObject.GetComponent<Usable>();
             player.Triggered(other);
-            player.avUses.CollectUses();
+            //player.avUses.CollectUses();
             if (player.gameObject.tag == "Player")
             {
                 hasObject = true;
@@ -32,7 +32,7 @@ public class PlayerTrigger : MonoBehaviour {
     {
         if (other.gameObject.GetComponent<Usable>() != null)
         {
-            player.avUses.currentUses.Clear();
+            //player.avUses.currentUses.Clear();
             player.UnTriggered(other);
             
             if (player.gameObject.tag == "Player")

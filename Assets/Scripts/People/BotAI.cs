@@ -137,7 +137,7 @@ public class BotAI : AI {
             case BotState.OrderingFood:
                 if (player.useBool)
                 {
-                    player.Use("Order");
+                    register.GetComponent<Register>().ProcessOrder(player);
                     state = BotState.WaitForOrder;
                 }
                 RotateTowards(destination.GetComponent<Transform>());
@@ -149,9 +149,10 @@ public class BotAI : AI {
                 if (register.GetComponent<Register>().hasOrder&& register.GetComponent<Register>().orderReady
                     &&register.GetComponent<ItemPlace>().hasItemPlaceds[0])
                 {
-                    
+
                     //Debug.Log("WAIT FFS!");
-                    player.Use("Order");
+                    //player.Use("Order");
+                    register.GetComponent<Register>().ProcessOrder(player);
                     //player.avUses.currentUses[player.triggerObj.GetComponent<Usable>()]["Order"](player);
 
                     if (player.hasQueueAfter)
@@ -195,7 +196,7 @@ public class BotAI : AI {
                 {
                     if (player.useBool && player.triggerObj == destination)
                     {
-                        player.Use("Seat");//seat
+                        table.GetComponent<Table>().SeatTable(player);
                         state = BotState.PlacingFoodOnTable;
                     }
                 }
@@ -205,7 +206,7 @@ public class BotAI : AI {
             case BotState.PlacingFoodOnTable:
                 if (player.useBool)
                 {
-                    player.Use(salverUsa, "Place");
+                    salverUsa.GetComponent<Placable>().Place(player);
                     state = BotState.Eating;
                 }
                 break;
@@ -223,7 +224,8 @@ public class BotAI : AI {
             case BotState.Standing:
                 if (player.useBool && player.triggerObj == destination)
                 {
-                    player.Use("Stand");
+                    //player.Use("Stand");
+                    table.GetComponent<Table>().SeatTable(player);
                     if (Random.Range(0, 2) > 0)
                     {
                         SetDestination(exit);
@@ -232,7 +234,7 @@ public class BotAI : AI {
                     }
                     else
                     {
-                        player.Use(salverUsa,"Take");
+                        salverUsa.GetComponent<Placable>().Take(player);
                         SetDestination(garbage);
                         state = BotState.ThrowTrash;
                     }
@@ -247,9 +249,9 @@ public class BotAI : AI {
                 {
                     if (player.useBool && player.triggerObj == destination)
                     {
-                        player.Use("Throw Garbage");
+                        garbage.GetComponent<Garbage>().EmptySalverNew(player);
                         if (!garbage.GetComponent<ItemPlace>().hasItemPlaceds[0])
-                            player.Use(salverUsa, "Place");
+                           salverUsa.GetComponent<Placable>().Place(player);
                         else if (garbage.GetComponent<ItemPlace>().items[0].tag == "Salver")
                             garbage.GetComponent<ItemPlace>().items[0].GetComponent<Salver>().StackSalver(player);
                         //state = BotState.GoToExit;
@@ -260,20 +262,6 @@ public class BotAI : AI {
                 }
                 break;
 
-            //кажется, этот стейт больше не используется. ДЕПРИКАТЕД!
-            case BotState.GoToExit:
-                
-                if (ReachedDest())
-                {
-                    if (player.useBool&&player.triggerObj==destination)
-                    {
-                        player.Use();
-                        //state = BotState.OrderingFood;
-                    }
-
-                    RotateTowards(destination.GetComponent<Transform>());
-                }
-                break;
         }
 
         CheckStateSwitch();
