@@ -15,7 +15,6 @@ public class Placable : MonoBehaviour {
         usable = GetComponent<Usable>();
 
         usable.useDict.Add("Place",Place);
-        //usable.useDict.Add("Take", Take);
     }
 
     public void Place(Player player)
@@ -66,8 +65,6 @@ public class Placable : MonoBehaviour {
                 usable.Switch("Place", "Take", Take);
             
             FindGroundItem(itemPlaceOfParent);
-            //UIManager.uiManager.OptionalClear();
-            //if (PlayerController.player.triggerObj != null && groundItem.gameObject==PlayerController.player.triggerObj)
             UIManager.uiManager.ContextRedraw(PlayerController.player);
 
 
@@ -76,8 +73,6 @@ public class Placable : MonoBehaviour {
             { 
                 GetComponent<Edible>().CraftCheck();
             }
-
-            
         }
     }
 

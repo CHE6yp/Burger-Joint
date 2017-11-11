@@ -24,19 +24,9 @@ public class Garbage : MonoBehaviour {
         personPlace = GetComponent<PersonPlace>();
 
         usable = GetComponent<Usable>();
-        GetComponent<Usable>().use = EmptySalverNew;
 
         usable.useDict.Add("Throw Garbage", EmptySalverNew);
         usable.useDict.Add("Take Out Trash", TakeOutTrash);
-
-        /*
-        GetComponent<Usable>().use = EmptySalverNew;
-
-        GetComponent<Usable>().useArray = new Usable.UsableFunc[3];
-        GetComponent<Usable>().useArray[0] = EmptySalverNew;
-        GetComponent<Usable>().useArray[1] = TakeOutTrash;
-        GetComponent<Usable>().useArray[2] = PlaceSalver;
-        */
     }
 
     

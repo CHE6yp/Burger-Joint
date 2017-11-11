@@ -10,17 +10,9 @@ public class Dump : MonoBehaviour {
     void Start () {
 
         usable = GetComponent<Usable>();
-        GetComponent<Usable>().use = ThrowAnything;
 
         usable.useDict.Add("Throw Anything", ThrowAnything);
 
-        /*
-        GetComponent<Usable>().use = ThrowAnything;
-
-        GetComponent<Usable>().useArray = new Usable.UsableFunc[1];
-        GetComponent<Usable>().useArray[0] = ThrowAnything;
-        */
-        
     }
 	
     public void ThrowAnything(Player player)

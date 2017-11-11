@@ -18,14 +18,8 @@ public class Exit : MonoBehaviour {
         hasPersonPlace = GetComponent<PersonPlace>();
 
         usable = GetComponent<Usable>();
-        GetComponent<Usable>().use = ExitJoint;
 
         usable.useDict.Add("Exit", ExitJoint);
-        /*
-        GetComponent<Usable>().use = ExitJoint;
-        GetComponent<Usable>().useArray = new Usable.UsableFunc[1];
-        GetComponent<Usable>().useArray[0] = ExitJoint;
-        */
     }
 	
 	public void ExitJoint(Player player)

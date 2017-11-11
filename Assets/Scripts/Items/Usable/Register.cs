@@ -32,7 +32,6 @@ public class Register : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         usable = GetComponent<Usable>();
-        usable.use = ProcessOrder;
 
         usable.useDict.Add("Generate w/ Food", GenerateSalverWithFood);
         usable.useDict.Add("Order", ProcessOrder);

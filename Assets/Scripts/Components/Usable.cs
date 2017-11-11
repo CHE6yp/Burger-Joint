@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class Usable : MonoBehaviour {
 
     public delegate void UsableFunc(Player player);
-    public UsableFunc use;
     
     public Dictionary<string, UsableFunc> useDict = new Dictionary<string, UsableFunc>();
 
@@ -29,13 +28,18 @@ public class Usable : MonoBehaviour {
         {
             useDict.Remove(delete);
         }
-        catch { }
+        catch
+        {
+            Debug.LogWarning("Usable.Switch() some error in useDict.Remove");
+        }
         try
         {
-            //if (useDict[addKey] != addValue)
-                useDict.Add(addKey, addValue);
+            useDict.Add(addKey, addValue);
         }
-        catch { }
+        catch
+        {
+            Debug.LogWarning("Usable.Switch() some error in useDict.Add");
+        }
 
         UIManager.uiManager.ContextRedraw(PlayerController.player);
     }

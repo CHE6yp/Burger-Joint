@@ -19,7 +19,6 @@ public class Table : MonoBehaviour {
         personPlace = GetComponent<PersonPlace>();
 
         usable = GetComponent<Usable>();
-        GetComponent<Usable>().use = SeatTable;
 
         usable.useDict.Add("Seat", SeatTable);
     }

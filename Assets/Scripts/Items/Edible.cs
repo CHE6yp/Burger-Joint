@@ -24,15 +24,8 @@ public class Edible : MonoBehaviour {
 
         placable = GetComponent<Placable>();
         usable = GetComponent<Usable>();
-        usable.use = Eat;
 
         usable.useDict.Add("Eat", Eat);
-        /*
-        GetComponent<Usable>().use = Eat;
-        GetComponent<Usable>().useArray = new Usable.UsableFunc[1];
-        GetComponent<Usable>().useArray[0] = Eat;
-        */
-
     }
 
     public void Eat(Player player)

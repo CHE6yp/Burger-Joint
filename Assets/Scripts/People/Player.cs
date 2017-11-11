@@ -37,11 +37,6 @@ public class Player : MonoBehaviour {
             GetComponent<Animator>().SetBool("holding", false);
     }
 
-    public void Use()
-    {
-        triggerObj.GetComponent<Usable>().use(this);
-    }
-
     public void Use(string funcName)
     {
         try { 

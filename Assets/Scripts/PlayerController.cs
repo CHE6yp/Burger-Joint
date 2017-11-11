@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-      void Start () {
+    void Start () {
         player = GetComponent<Player>();
         contrl = GetComponent<CharacterController>();
         camPos = new Vector3(0, 15, -13);
@@ -117,14 +117,6 @@ public class PlayerController : MonoBehaviour {
         }
         //-------------
 
-
-
-        if (player.useBool)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-                player.Use();
-
-        }
 
         //управление временем (для удобства, потом надо вырезать)
         if (Input.GetKeyDown(KeyCode.Alpha1))
