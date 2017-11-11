@@ -105,11 +105,15 @@ public class JointManager : MonoBehaviour {
         {
             bot = Instantiate(customer, spawn1.transform.position, spawn1.transform.rotation);
             bot.GetComponent<BotAI>().whereSpawned = 1;
+            //проблема на маке, на винде эта строка не нужна
+            bot.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(spawn1.transform.position);
         }
         else
         {
             bot = Instantiate(customer, spawn2.transform.position, spawn2.transform.rotation);
             bot.GetComponent<BotAI>().whereSpawned = 2;
+            //проблема на маке, на винде эта строка не нужна
+            bot.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(spawn2.transform.position);
         }
         bot.name = "Bot " + botCount.ToString();
         botCount++;
@@ -118,11 +122,15 @@ public class JointManager : MonoBehaviour {
         {
             bot = Instantiate(customer, spawn3.transform.position, spawn3.transform.rotation);
             bot.GetComponent<BotAI>().whereSpawned = 3;
+            //проблема на маке, на винде эта строка не нужна
+            bot.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(spawn3.transform.position);
         }
         else
         {
             bot = Instantiate(customer, spawn4.transform.position, spawn4.transform.rotation);
             bot.GetComponent<BotAI>().whereSpawned = 4;
+            //проблема на маке, на винде эта строка не нужна
+            bot.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(spawn4.transform.position);
         }
         bot.name = "Bot " + botCount.ToString();
         botCount++;
