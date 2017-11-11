@@ -32,14 +32,11 @@ public class ServiceAI : AI {
 	
 	// Update is called once per frame
 	void Update () {
-        //if (displayC)
-
         StateMachine();
 	}
 
     public override void StateMachine()
     {
-        
         switch (state)
         {
             case ServiceState.Idle:
@@ -78,13 +75,11 @@ public class ServiceAI : AI {
                         if (assembly.GetComponent<ItemPlace>().items[0] == null)
                         {
                             player.itemPlace.items[0].GetComponent<Placable>().Place(assembly.GetComponent<ItemPlace>(), 0);
-                            //display.GetComponent<DisplayCounter>().cashier = null;
                             SetDestination(generator);
                             state = ServiceState.GetFood;
 
                             if (player.hasQueueAfter)
                                 player.queuePerson.GetComponent<CashierAI>().GetOutQueue();
-                            //break;
                         }
                     }
                     RotateTowards(destination.GetComponent<Transform>());
@@ -115,14 +110,12 @@ public class ServiceAI : AI {
                         if (assembly.GetComponent<ItemPlace>().items[0] != null && assembly.GetComponent<ItemPlace>().items[0].name == "Wrap")
                         {
                             player.itemPlace.items[0].GetComponent<Placable>().Place(assembly.GetComponent<ItemPlace>().items[0].GetComponent<ItemPlace>(), 0);
-                            //display.GetComponent<DisplayCounter>().cashier = null;
                             assembly.GetComponent<ItemPlace>().items[0].GetComponent<Placable>().Take(player);
                             SetDestination2(display);
                             state = ServiceState.PutFood;
 
                             if (player.hasQueueAfter)
                                 player.queuePerson.GetComponent<CashierAI>().GetOutQueue();
-                            //break;
                         }
                     }
 
@@ -143,29 +136,17 @@ public class ServiceAI : AI {
                             {
                                 player.itemPlace.items[0].GetComponent<Placable>().Place(display.GetComponent<ItemPlace>(), i);
 
-                                //display.GetComponent<DisplayCounter>().cashier = null;
                                 state = ServiceState.Idle;
                                 flag = true;
 
-
                                 if (player.hasQueueAfter)
                                     player.queuePerson.GetComponent<CashierAI>().GetOutQueue();
-                                //break;
                             }
-
                         }
                     }
-
-
                     RotateTowards(destination.GetComponent<Transform>());
-
                 }
-
                 break;
-
-
         }
-
-
     }
 }

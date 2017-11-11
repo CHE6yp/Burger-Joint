@@ -36,7 +36,6 @@ public class Garbage : MonoBehaviour {
         {
             if (player.itemPlace.hasItemPlaceds[0])
             {
-
                 if (player.itemPlace.items[0].GetComponent<ItemPlace>() != null)
                 {
                     ItemPlace itemT = player.itemPlace.items[0].GetComponent<ItemPlace>();
@@ -45,13 +44,12 @@ public class Garbage : MonoBehaviour {
                     {
                         garbage++;
 
-                        GameObject.Destroy(itemT.items[0]);
+                        Destroy(itemT.items[0]);
                         itemT.items[0] = null;
                         itemT.hasItemPlaceds[0] = false;
                         counter.text = garbage.ToString() + "/" + max.ToString();
                     }
                 }
-
             }
         }
         else
@@ -59,10 +57,8 @@ public class Garbage : MonoBehaviour {
             Debug.Log("Garbage is full!");
             if (player.itemPlace.hasItemPlaceds[0])
             {
-
                 if (player.itemPlace.items[0].GetComponent<ItemPlace>() != null)
                 {
-                    
                     ItemPlace itemT = player.itemPlace.items[0].GetComponent<ItemPlace>();
                     
                     if (itemT.items[0] != null)
@@ -77,16 +73,11 @@ public class Garbage : MonoBehaviour {
                         float rX = Random.Range(-2.5f, 2.5f);
                         float rZ = Random.Range(-2.5f, -1);
                         item.transform.position = transform.position + new Vector3(rX, -2, rZ); 
-
                     }
                 }
-
             }
         }
-        
     }
-    
-
 
     public void TakeOutTrash(Player player)
     {
@@ -95,7 +86,6 @@ public class Garbage : MonoBehaviour {
             GameObject garbageT = Instantiate(garbageBag);
             garbageT.GetComponent<GarbageBag>().trash = garbage;
             garbageT.GetComponent<Placable>().Place(player.itemPlace, 0);
-            //Utility.PlaceItem(garbageT, player.gameObject);
             garbage = 0;
             counter.text = garbage.ToString() + "/" + max.ToString();
         }

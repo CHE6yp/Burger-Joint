@@ -37,7 +37,8 @@ public class Edible : MonoBehaviour {
 
             player.eating = true;
             player.gameObject.GetComponent<Animator>().SetBool("eating", true);
-        } else
+        } 
+        else
         {
             player.eating = false;
             player.gameObject.GetComponent<Animator>().SetBool("eating", false);
@@ -69,12 +70,7 @@ public class Edible : MonoBehaviour {
 
                 gameObject.transform.SetParent(food.transform);
                 food.GetComponent<Edible>().ingridients.Add(gameObject);
-                
-
-
-
             }
         }
-
     }
 }

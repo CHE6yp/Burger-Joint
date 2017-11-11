@@ -7,12 +7,10 @@ using System.Collections;
 [RequireComponent(typeof(Usable))]
 public class Register : MonoBehaviour
 {
-
     public Usable usable;
     public ItemPlace itemPlace;
     public PersonPlace personPlace;
     public AudioSource audioSource;
-
    
     public bool hasCustomer;
     public Player customer;
@@ -37,13 +35,10 @@ public class Register : MonoBehaviour
         usable.useDict.Add("Order", ProcessOrder);
         usable.useDict.Add("Give Order", GiveOrder);
         usable.useDict.Add("Get Salver", GenerateSalver);
-
     }
-
 
     public void GenerateSalver(Player player)
     {
-
         if (!player.itemPlace.hasItemPlaceds[0])
         {
             GameObject salver = Instantiate(salverP);
@@ -54,7 +49,6 @@ public class Register : MonoBehaviour
 
     public void GenerateSalverWithFood(Player player)
     {
-
         if (!player.itemPlace.hasItemPlaceds[0])
         {
             GameObject salver = Instantiate(salverP);
@@ -64,11 +58,6 @@ public class Register : MonoBehaviour
             food.GetComponent<Placable>().Place(salver.GetComponent<ItemPlace>(), 0);
 
             salver.GetComponent<Placable>().Insert(player.itemPlace,0);
-            
-            
-
-            
-
         }
     }
 
@@ -82,21 +71,16 @@ public class Register : MonoBehaviour
     public void ProcessOrder(Player player)
     {
         hasOrder = true;
-        //Debug.Log("ProcessOrder(" + player.gameObject.name +")");
+
         if (!hasOrder)//костыль
         {
-            //Debug.Log("ORDER FFS!");
             customer = player;
             hasCustomer = true;
             hasOrder = true;
-            
-            //Debug.Log("CUST = "+customer.gameObject.name);
         }
         else if (itemPlace.hasItemPlaceds[0]&&orderReady)
         {
-            //Debug.Log("TAKE FOOD FFS!");
             PayForFood(customer);
-            //UseTable(customer);
             
             customer.GetComponent<BotAI>().salverUsa = itemPlace.items[0].GetComponent<Usable>();
             customer.GetComponent<BotAI>().foodUsa = 
@@ -104,12 +88,9 @@ public class Register : MonoBehaviour
             Debug.Log("TriggerObj -"+ customer.triggerObj);
             itemPlace.items[0].GetComponent<Placable>().Take(customer);
             Debug.Log(itemPlace.items[0]);
-            //GetComponent<ItemPlace>().items[0]. (customer);
 
             customer = null;
-            //Debug.Log("CUST = NULL, "+hasCustomer);
             hasCustomer = false;
-            //Debug.Log("hasCustomer " + hasCustomer);
             hasOrder = false;
             orderReady = false;
         }

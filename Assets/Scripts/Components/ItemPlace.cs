@@ -30,11 +30,6 @@ public class ItemPlace : MonoBehaviour {
                 i++;
             }
         }
-        
-        /*
-        if (GetComponent<Player>() == null)
-            GetComponent<Usable>().useDict.Add("Place/Take", PlaceTake);
-            */
     }
 
     public void PlaceTake(Player player)
@@ -45,17 +40,13 @@ public class ItemPlace : MonoBehaviour {
 
     }
 
-
-
     public void PlaceTake(Player player, int i)
     {
-        
         if (!(player.itemPlace.hasItemPlaceds[0]) && (hasItemPlaceds[i]))
         {
             items[i].GetComponent<Placable>().Place(player.itemPlace,0);
         }
-        else
-        if (player.itemPlace.hasItemPlaceds[0] && !hasItemPlaceds[i])
+        else if (player.itemPlace.hasItemPlaceds[0] && !hasItemPlaceds[i])
         {
             player.itemPlace.items[0].GetComponent<Placable>().Place(this, i);
             
@@ -64,25 +55,5 @@ public class ItemPlace : MonoBehaviour {
         {
             items[i].GetComponent<Salver>().StackSalver(player);
         }
-        
     }
-
-    /*
-    static public void TransferItem(Place from, Place to)
-    {
-
-        to.item = from.item;
-        to.item.transform.parent = to.place.transform;
-        to.item.transform.position = to.place.transform.position;
-        to.item.transform.localEulerAngles = new Vector3(0, 0, 0);
-        from.item = null;
-        to.hasItemPlaced = true;
-        from.hasItemPlaced = false;
-
-
-        //затратно?
-        UIManager.uiManager.ContextRedraw(PlayerController.player.triggerObj, PlayerController.player);
-
-    }
-    */
 }

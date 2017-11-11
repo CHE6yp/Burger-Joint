@@ -9,8 +9,6 @@ public class Player : MonoBehaviour {
     public GameObject triggerObj;
     public GameObject useShow;
 
-    public AvailableUses avUses;
-
     public ItemPlace itemPlace;
 
 
