@@ -16,42 +16,33 @@ public class UsePanel : MonoBehaviour {
 	}
 
     //не нужен
+    //ЕЩЕ КАК НУЖЕН КАК ОКАЗАЛОСЬ
     public void PanelDraw(Usable usable, Player player)
     {
         objectName.text = usable.gameObject.name;
         foreach (KeyValuePair<string,Usable.UsableFunc> func in usable.useDict)
         {
-            GameObject buttonT = GameObject.Instantiate(buttonPref);
+            GameObject buttonT = Instantiate(buttonPref);
             buttons.Add(buttonT);
             buttonT.transform.SetParent(contextMenu.transform);
             Usable.UsableFunc funcT = func.Value;
-            
-            //string keyT = func.Key;
-            
-            //buttonT.GetComponent<Button>().onClick.AddListener(() => player.Use(keyT));
+
             buttonT.GetComponent<Button>().onClick.AddListener(() => funcT(player)); // ДА СУКА ДА
-            
-            //buttonT.GetComponent<Button>().onClick.AddListener(() =>  UIManager.uiManager.ContextRedraw(player.triggerObj, player));
             buttonT.transform.Find("Text").GetComponent<Text>().text = func.Key;
         }
     }
 
+    //это для множества объектов было, вот он кажись не нужен
     public void PanelDraw(string objName, Dictionary<string,Usable.UsableFunc> useDict, Player player)
     {
         objectName.text = objName;
         foreach (KeyValuePair<string, Usable.UsableFunc> func in useDict)
         {
-            GameObject buttonT = GameObject.Instantiate(buttonPref);
+            GameObject buttonT = Instantiate(buttonPref);
             buttons.Add(buttonT);
             buttonT.transform.SetParent(contextMenu.transform);
             Usable.UsableFunc funcT = func.Value;
-
-            //string keyT = func.Key;
-
-            //buttonT.GetComponent<Button>().onClick.AddListener(() => player.Use(keyT));
-            buttonT.GetComponent<Button>().onClick.AddListener(() => funcT(player)); // ДА СУКА ДА
-
-            //buttonT.GetComponent<Button>().onClick.AddListener(() =>  UIManager.uiManager.ContextRedraw(player.triggerObj, player));
+            buttonT.GetComponent<Button>().onClick.AddListener(() => funcT(player)); // ДА СУКА 
             buttonT.transform.Find("Text").GetComponent<Text>().text = func.Key;
         }
     }

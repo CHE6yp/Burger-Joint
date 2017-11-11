@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviour {
                         if (Input.GetMouseButtonDown(0))
                         {
                             player.Triggered(hit.collider);
-                            player.avUses.CollectUses();
                             UIManager.uiManager.ContextDraw(hit.transform.gameObject.GetComponent<Usable>(), player);
                             choseUsable = true;
                         }

@@ -111,7 +111,7 @@ public class Placable : MonoBehaviour {
 
             if (groundItem != null)
             {
-                groundItem.ReChechUses();
+
                 foreach (Player playerC in groundItem.players)
                 {
                     playerC.avUses.ClearUses();
@@ -163,7 +163,6 @@ public class Placable : MonoBehaviour {
                 {
                     groundItem = itemplace.GetComponent<GroundItem>();
                     UpdateChildrenGroundItem();
-                    groundItem.ReChechUses();
                 }
             }
         }

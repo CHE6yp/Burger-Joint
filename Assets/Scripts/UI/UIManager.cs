@@ -44,16 +44,13 @@ public class UIManager : MonoBehaviour {
 
     public void ContextDraw(Usable usable, Player player)
     {
-
-        foreach (KeyValuePair<Usable, Dictionary<string, Usable.UsableFunc>> dict in player.avUses.currentUses)
-        {
             usePanel = Instantiate(usePanelPref);
-            usePanel.GetComponent<UsePanel>().PanelDraw(dict.Key.gameObject.name, dict.Value, player);
+            usePanel.GetComponent<UsePanel>().PanelDraw(usable, player);
             usePanel.transform.SetParent(objectUsePanels.transform);
             usePanels.Add(usePanel);
 
-        }
     }
+
 
     public void ContextHandsDraw(Player player)
     {

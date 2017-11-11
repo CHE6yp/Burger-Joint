@@ -16,15 +16,7 @@ public class PlayerTrigger : MonoBehaviour {
             
             Usable usable = other.gameObject.GetComponent<Usable>();
             player.Triggered(other);
-            //player.avUses.CollectUses();
-            if (player.gameObject.tag == "Player")
-            {
-                hasObject = true;
-                currentCollider = other;
-                
-                ui.ContextDraw(other.gameObject.GetComponent<Usable>(), player);
-                //GameObject.Find("UsableText").GetComponent<Text>().text = other.gameObject.GetComponent<Usable>().ShowUsable();
-            }
+           
         }
     }
 

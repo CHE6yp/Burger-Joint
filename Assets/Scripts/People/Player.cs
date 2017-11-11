@@ -54,23 +54,6 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void Use(Usable usable, string funcName)
-    {
-
-        avUses.currentUses[usable][funcName](this);
-        /*
-        try
-        {
-            avUses.currentUses[usable][funcName](this);
-
-        }
-        catch
-        {
-            Debug.LogWarning("useDict[" + funcName + "] problem. " + gameObject.name);
-        }
-        */
-    }
-
     public void Triggered(Collider other)
     {
         if (other.gameObject.GetComponent<Usable>() != null)
