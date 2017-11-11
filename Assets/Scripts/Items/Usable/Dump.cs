@@ -17,7 +17,7 @@ public class Dump : MonoBehaviour {
 	
     public void ThrowAnything(Player player)
     {
-        GameObject.Destroy(player.itemPlace.items[0]);
+        Destroy(player.itemPlace.items[0]);
         
         player.itemPlace.hasItemPlaceds[0] = false;
     }

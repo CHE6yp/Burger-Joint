@@ -12,15 +12,12 @@ public class PlayerController : MonoBehaviour {
     public Camera cam2;
     public float speed = 1;
 
-    //public Player player;
-
     //взаимодействие с предметами мышкой
     public bool choseUsable;
     public Usable currentUsable;
 
-
-
-    void Start () {
+    void Start () 
+    {
         player = GetComponent<Player>();
         contrl = GetComponent<CharacterController>();
         camPos = new Vector3(0, 15, -13);
@@ -28,7 +25,6 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-
         float xMov = Input.GetAxis("Horizontal");
         float zMov = Input.GetAxis("Vertical");
         Vector3 movHorizontal = Vector3.right * xMov;
@@ -55,8 +51,6 @@ public class PlayerController : MonoBehaviour {
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-
-
             //over object text
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -117,7 +111,6 @@ public class PlayerController : MonoBehaviour {
         }
         //-------------
 
-
         //управление временем (для удобства, потом надо вырезать)
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1;
@@ -134,8 +127,5 @@ public class PlayerController : MonoBehaviour {
             cam.enabled = !cam.enabled;
             cam2.enabled = !cam2.enabled;
         }
-
     }
-
-
 }

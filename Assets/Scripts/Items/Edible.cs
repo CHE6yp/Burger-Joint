@@ -34,12 +34,11 @@ public class Edible : MonoBehaviour {
         {
             if (player.itemPlace.items[0] == null)
                 GetComponent<Placable>().Take(player);
-                //ItemPlace.TransferItem(GetComponent<Placable>().place,player.itemPlace.places[0]);
+
             player.eating = true;
             player.gameObject.GetComponent<Animator>().SetBool("eating", true);
         } else
         {
-            //Utility.TransferItem(player.gameObject, GetComponent<Placable>().place.gameObject);
             player.eating = false;
             player.gameObject.GetComponent<Animator>().SetBool("eating", false);
         }
@@ -59,8 +58,7 @@ public class Edible : MonoBehaviour {
             {
                 GameObject food = Instantiate(combinedP, placable.itemPlaceOfParent.transform.position, Quaternion.identity);
                 food.name = "Food";
-                //food.tag = "Food";
-                
+
                 food.AddComponent<Edible>();
                 food.GetComponent<Edible>().combined = true;
 

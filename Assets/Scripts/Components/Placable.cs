@@ -47,7 +47,6 @@ public class Placable : MonoBehaviour {
                 itemPlaceOfParent.hasItemPlaceds[placeIndex] = false;
             }
 
-
             placeTo.items[index] = gameObject;
             placeTo.hasItemPlaceds[index] = true;
 
@@ -60,13 +59,11 @@ public class Placable : MonoBehaviour {
 
             placeIndex = index;
            
-
             if (placeTo.gameObject.GetComponent<Player>() == null )
                 usable.Switch("Place", "Take", Take);
             
             FindGroundItem(itemPlaceOfParent);
             UIManager.uiManager.ContextRedraw(PlayerController.player);
-
 
             //ПРОВЕРИТЬ ЕЩЕ РАЗ ЭТО ВСЕ, НЕДОДЕЛАННО!!!
             if (GetComponent<Edible>() != null)
@@ -76,21 +73,16 @@ public class Placable : MonoBehaviour {
         }
     }
 
-
-
     public void Take(Player player)
     {
         if (!player.itemPlace.hasItemPlaceds[0])
         {
-
             if (itemPlaceOfParent != null)
             {
-                //Debug.Log("WAT");
                 itemPlaceOfParent.placesTaken--;
                 itemPlaceOfParent.items[placeIndex] = null;
                 itemPlaceOfParent.hasItemPlaceds[placeIndex] = false;
             }
-
 
             player.itemPlace.items[0] = gameObject;
             player.itemPlace.hasItemPlaceds[0] = true;
@@ -104,16 +96,11 @@ public class Placable : MonoBehaviour {
 
             usable.Switch("Take", "Place", Place);
 
-
             UIManager.uiManager.ContextRedraw(PlayerController.player);
-
         }
 
 
     }
-
-
-
 
     public void Insert(ItemPlace placeTo, int index)
     {
@@ -128,8 +115,6 @@ public class Placable : MonoBehaviour {
 
         UIManager.uiManager.ContextRedraw(PlayerController.player);
     }
-
-    
 
     void FindGroundItem(ItemPlace itemplace)
     {
