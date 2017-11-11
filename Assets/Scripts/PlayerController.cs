@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour {
                     }
                     else
                     {
-                        player.avUses.ClearUses();
                         UIManager.uiManager.ContextClear();
                         player.UnTriggered(hit.collider);
                         currentUsable = null;
@@ -107,7 +106,6 @@ public class PlayerController : MonoBehaviour {
                         {
                             choseUsable = false;
 
-                            player.avUses.ClearUses();
                             UIManager.uiManager.ContextClear();
                             player.UnTriggered(hit.collider);
                             currentUsable = null;

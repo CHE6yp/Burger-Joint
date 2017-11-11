@@ -106,21 +106,9 @@ public class Placable : MonoBehaviour {
             
             itemPlaceOfParent = player.itemPlace;
             placeIndex = 0;
-            //if (usable.useDict["Place"] == null)
-                usable.Switch("Take", "Place", Place);
 
-            if (groundItem != null)
-            {
+            usable.Switch("Take", "Place", Place);
 
-                foreach (Player playerC in groundItem.players)
-                {
-                    playerC.avUses.ClearUses();
-                    playerC.avUses.CollectUses();
-
-                }
-
-                groundItem = null;
-            }
 
             UIManager.uiManager.ContextRedraw(PlayerController.player);
 
