@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour {
 
         foreach (KeyValuePair<Usable, Dictionary<string, Usable.UsableFunc>> dict in player.avUses.currentUses)
         {
-            usePanel = GameObject.Instantiate(usePanelPref);
+            usePanel = Instantiate(usePanelPref);
             usePanel.GetComponent<UsePanel>().PanelDraw(dict.Key.gameObject.name, dict.Value, player);
             usePanel.transform.SetParent(objectUsePanels.transform);
             usePanels.Add(usePanel);
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour {
         if (player.itemPlace.items[0] != null)
         {
             //руки
-            usePanel = GameObject.Instantiate(usePanelPref);
+            usePanel = Instantiate(usePanelPref);
             //Debug.Log(player.itemPlace.items[0].GetComponent<Usable>().ShowUsable());
             usePanel.GetComponent<UsePanel>().PanelDraw(player.itemPlace.items[0].GetComponent<Usable>(), player);
             usePanel.transform.SetParent(playerUsePanels.transform);
@@ -74,13 +74,13 @@ public class UIManager : MonoBehaviour {
     public void ContextClear()
     {
         foreach (GameObject usePanelT in usePanels)
-            GameObject.Destroy(usePanelT);
+            Destroy(usePanelT);
 
         usePanels.Clear();
     }
     public void ContextHandsClear()
     {
-        GameObject.Destroy(useHandsPanel);
+        Destroy(useHandsPanel);
 
         //useHandsPanels.Clear();
     }
@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour {
 
         if (x != itemPlace.placeCount)
         {
-            optionalUsePanel = GameObject.Instantiate(optionalUsePanelPref);
+            optionalUsePanel = Instantiate(optionalUsePanelPref);
             optionalUsePanel.GetComponent<OptionalPanel>().PanelDraw(placable, itemPlace);
             optionalUsePanel.transform.SetParent(optionalPanels.transform);
             optionalUsePanels.Add(optionalUsePanel);
@@ -132,7 +132,7 @@ public class UIManager : MonoBehaviour {
     public void OptionalClear()
     {
         foreach (GameObject optionalPanelT in optionalUsePanels)
-            GameObject.Destroy(optionalPanelT);
+          Destroy(optionalPanelT);
 
         //usePanels.Clear();
     }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -52,67 +53,71 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        //over object text
-        RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction*10);
-
-        if (!choseUsable)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (Physics.Raycast(ray, out hit))
+
+
+            //over object text
+            RaycastHit hit;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction * 10);
+
+            if (!choseUsable)
             {
-                if (hit.transform.GetComponent<Usable>() != null)
+                if (Physics.Raycast(ray, out hit))
                 {
-                    currentUsable = hit.transform.GetComponent<Usable>();
-
-                    Transform objectHit = hit.transform;
-                    //Debug.Log("Ray Hit! " + objectHit.name);
-                    UIManager.uiManager.ShowOverText(hit.transform.gameObject);
-
-
-
-
-                    //КЛИК!
-                    if (Input.GetMouseButtonDown(0))
+                    if (hit.transform.GetComponent<Usable>() != null)
                     {
-                        player.Triggered(hit.collider);
-                        player.avUses.CollectUses();
-                        UIManager.uiManager.ContextDraw(hit.transform.gameObject.GetComponent<Usable>(), player);
-                        choseUsable = true;
+                        currentUsable = hit.transform.GetComponent<Usable>();
+
+                        Transform objectHit = hit.transform;
+                        //Debug.Log("Ray Hit! " + objectHit.name);
+                        UIManager.uiManager.ShowOverText(hit.transform.gameObject);
+
+
+
+
+                        //КЛИК!
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            player.Triggered(hit.collider);
+                            player.avUses.CollectUses();
+                            UIManager.uiManager.ContextDraw(hit.transform.gameObject.GetComponent<Usable>(), player);
+                            choseUsable = true;
+                        }
                     }
-                }
-                else
-                {
-                    player.avUses.ClearUses();
-                    UIManager.uiManager.ContextClear();
-                    player.UnTriggered(hit.collider);
-                    currentUsable = null;
-                    UIManager.uiManager.HideOverText();
-
-                }
-            }
-
-        }
-        else
-        {
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.GetComponent<Usable>() != null)
-                {
-                    if (Input.GetMouseButtonDown(0))
+                    else
                     {
-                        choseUsable = false;
-
                         player.avUses.ClearUses();
                         UIManager.uiManager.ContextClear();
                         player.UnTriggered(hit.collider);
                         currentUsable = null;
                         UIManager.uiManager.HideOverText();
+
+                    }
+                }
+
+            }
+            else
+            {
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.GetComponent<Usable>() != null)
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            choseUsable = false;
+
+                            player.avUses.ClearUses();
+                            UIManager.uiManager.ContextClear();
+                            player.UnTriggered(hit.collider);
+                            currentUsable = null;
+                            UIManager.uiManager.HideOverText();
+                        }
                     }
                 }
             }
         }
-
         //-------------
 
 
