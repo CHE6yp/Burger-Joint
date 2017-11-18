@@ -3,7 +3,6 @@ using System.Collections;
 
 [SelectionBase]
 [RequireComponent(typeof(ItemPlace))]
-[RequireComponent(typeof(GroundItem))]
 [RequireComponent(typeof(Usable))]
 public class BreadTable : MonoBehaviour {
 

@@ -6,7 +6,6 @@ public class Placable : MonoBehaviour {
 
     Usable usable;
 
-    public GroundItem groundItem;
     public ItemPlace itemPlaceOfParent;
     public int placeIndex;
 
@@ -62,7 +61,6 @@ public class Placable : MonoBehaviour {
             if (placeTo.gameObject.GetComponent<Player>() == null )
                 usable.Switch("Place", "Take", Take);
             
-            FindGroundItem(itemPlaceOfParent);
             UIManager.uiManager.ContextRedraw(PlayerController.player);
 
             //ПРОВЕРИТЬ ЕЩЕ РАЗ ЭТО ВСЕ, НЕДОДЕЛАННО!!!
@@ -116,39 +114,4 @@ public class Placable : MonoBehaviour {
         UIManager.uiManager.ContextRedraw(PlayerController.player);
     }
 
-    void FindGroundItem(ItemPlace itemplace)
-    {
-        groundItem = null;
-        if (itemplace != null)
-        {
-            if (itemplace.GetComponent<Placable>() != null)
-            {
-                FindGroundItem(itemplace.GetComponent<Placable>().itemPlaceOfParent);
-            }
-            else
-            {
-                if (itemplace.GetComponent<GroundItem>() != null)
-                {
-                    groundItem = itemplace.GetComponent<GroundItem>();
-                    UpdateChildrenGroundItem();
-                }
-            }
-        }
-    }
-
-    void UpdateChildrenGroundItem()
-    {
-        if (GetComponent<ItemPlace>())
-        {
-            ItemPlace ip = GetComponent<ItemPlace>();
-            for (int i = 0; i < ip.placeCount; i++)
-            {
-                if (ip.hasItemPlaceds[i])
-                {
-                    ip.items[i].GetComponent<Placable>().groundItem = groundItem;
-                    ip.items[i].GetComponent<Placable>().UpdateChildrenGroundItem();
-                }
-            }
-        }
-    }
 }

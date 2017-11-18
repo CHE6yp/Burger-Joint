@@ -54,15 +54,11 @@ public class Player : MonoBehaviour {
             triggerObj = other.gameObject;
             useShow.SetActive(true);
             useBool = true;
-            if (other.gameObject.GetComponent<GroundItem>() != null)
-                other.gameObject.GetComponent<GroundItem>().players.Add(this);
         }
     }
 
     public void UnTriggered(Collider other)
     {
-        if (other.gameObject.GetComponent<GroundItem>() != null)
-            other.GetComponent<GroundItem>().players.Remove(this);
         triggerObj = null;
         useShow.SetActive(false);
         useBool = false;

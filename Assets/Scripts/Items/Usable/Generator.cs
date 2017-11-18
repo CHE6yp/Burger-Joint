@@ -3,7 +3,6 @@ using System.Collections;
 
 [SelectionBase]
 [RequireComponent(typeof(Usable))]
-[RequireComponent(typeof(GroundItem))]
 public class Generator : MonoBehaviour {
     Usable usable;
 
