@@ -273,7 +273,7 @@ public class BotAI : AI {
     {
         if (checkingStateDebug != state)
         {
-            Debug.Log(gameObject.name + " state: " + state);
+            //Debug.Log(gameObject.name + " state: " + state);
             checkingStateDebug = state;
         }
     }
