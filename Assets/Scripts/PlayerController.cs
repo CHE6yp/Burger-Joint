@@ -94,8 +94,7 @@ public class PlayerController : MonoBehaviour {
             {
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.transform.GetComponent<Usable>() != null)
-                    {
+                    
                         if (Input.GetMouseButtonDown(0))
                         {
                             choseUsable = false;
@@ -105,7 +104,7 @@ public class PlayerController : MonoBehaviour {
                             currentUsable = null;
                             UIManager.uiManager.HideOverText();
                         }
-                    }
+
                 }
             }
         }
