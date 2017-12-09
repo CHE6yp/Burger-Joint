@@ -94,17 +94,25 @@ public class PlayerController : MonoBehaviour {
             {
                 if (Physics.Raycast(ray, out hit))
                 {
-                    
+                    if (hit.transform.GetComponent<Usable>() != null)
+                    {
                         if (Input.GetMouseButtonDown(0))
                         {
-                            choseUsable = false;
-
                             UIManager.uiManager.ContextClear();
-                            player.UnTriggered(hit.collider);
-                            currentUsable = null;
-                            UIManager.uiManager.HideOverText();
+                            player.Triggered(hit.collider);
+                            UIManager.uiManager.ContextDraw(hit.transform.gameObject.GetComponent<Usable>(), player);
+                            choseUsable = true;
                         }
+                    }
+                    else if (Input.GetMouseButtonDown(0))
+                    {
+                        choseUsable = false;
 
+                        UIManager.uiManager.ContextClear();
+                        player.UnTriggered(hit.collider);
+                        currentUsable = null;
+                        UIManager.uiManager.HideOverText();
+                    }
                 }
             }
         }

@@ -60,8 +60,9 @@ public class Placable : MonoBehaviour {
            
             if (placeTo.gameObject.GetComponent<Player>() == null )
                 usable.Switch("Place", "Take", Take);
-            
-            UIManager.uiManager.ContextRedraw(PlayerController.player);
+
+            //Возможно ошибка с рисованием меню функций предмета связанна с тем, что меню рисуется когда какой либо бот где либо чтото берет или кладет
+            //UIManager.uiManager.ContextRedraw(PlayerController.player);
 
             //ПРОВЕРИТЬ ЕЩЕ РАЗ ЭТО ВСЕ, НЕДОДЕЛАННО!!!
             if (GetComponent<Edible>() != null)
@@ -94,7 +95,7 @@ public class Placable : MonoBehaviour {
 
             usable.Switch("Take", "Place", Place);
 
-            UIManager.uiManager.ContextRedraw(PlayerController.player);
+            //UIManager.uiManager.ContextRedraw(PlayerController.player);
         }
 
 
@@ -111,7 +112,7 @@ public class Placable : MonoBehaviour {
 
         itemPlaceOfParent = placeTo;
 
-        UIManager.uiManager.ContextRedraw(PlayerController.player);
+        //UIManager.uiManager.ContextRedraw(PlayerController.player);
     }
 
 }

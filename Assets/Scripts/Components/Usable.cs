@@ -41,6 +41,6 @@ public class Usable : MonoBehaviour {
             Debug.LogWarning("Usable.Switch() some error in useDict.Add");
         }
 
-        UIManager.uiManager.ContextRedraw(PlayerController.player);
+        //UIManager.uiManager.ContextRedraw(PlayerController.player);
     }
 }

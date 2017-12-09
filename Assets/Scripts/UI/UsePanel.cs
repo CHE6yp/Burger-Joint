@@ -28,8 +28,11 @@ public class UsePanel : MonoBehaviour {
             Usable.UsableFunc funcT = func.Value;
 
             buttonT.GetComponent<Button>().onClick.AddListener(() => funcT(player)); // ДА СУКА ДА
+            //Не уверен что это в нужном месте строка, но короче она чтобы очищалось меню выбора функции с предметом когда чтото выбрал/ Почемуто это меню рисуется будто бы с какимто интервалом
+            buttonT.GetComponent<Button>().onClick.AddListener(UIManager.uiManager.ContextClear);
             buttonT.transform.Find("Text").GetComponent<Text>().text = func.Key;
         }
+        Debug.LogWarning("Panel Draw");
     }
 
     //это для множества объектов было, вот он кажись не нужен
