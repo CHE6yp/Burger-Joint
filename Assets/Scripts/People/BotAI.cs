@@ -315,7 +315,7 @@ public class BotAI : AI {
         {
             isInQueue = false;
 			navigator.speed = 0;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             navigator.speed = 10;
             if (player.hasQueueAfter)
                 StartCoroutine(player.queuePerson.GetComponent<BotAI>().MoveQueue());
@@ -327,7 +327,7 @@ public class BotAI : AI {
         if (isInQueue)
         {
             navigator.speed = 0;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             navigator.speed = 10;
             if (player.hasQueueAfter)
                 StartCoroutine(player.queuePerson.GetComponent<BotAI>().MoveQueue());

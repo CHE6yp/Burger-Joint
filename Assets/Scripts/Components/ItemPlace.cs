@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ItemPlace : MonoBehaviour {
 
-   
 
     public int placeCount = 1;
     public int placesTaken = 0;
@@ -14,6 +13,8 @@ public class ItemPlace : MonoBehaviour {
 
     void Awake()
     {
+        if (!GetComponent<Player>())
+            GetComponent<Usable>().useDict.Add("Pl", PlaceTake);
         
         items = new GameObject[placeCount];
         places = new GameObject[placeCount];
