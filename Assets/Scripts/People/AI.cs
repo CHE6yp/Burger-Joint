@@ -101,7 +101,8 @@ public abstract class AI : MonoBehaviour {
         {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(navigator.destination + gizmoOffset, 0.5f);
-
+            Gizmos.DrawRay(player.transform.position, navigator.destination-player.transform.position);
         }
+
     }
 }

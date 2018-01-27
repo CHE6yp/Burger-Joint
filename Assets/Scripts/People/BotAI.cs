@@ -24,6 +24,7 @@ public class BotAI : AI {
     public BotState state = BotState.Outside;
     public BotState previousState = BotState.Idle;
     public GameObject previousDestination;
+    public bool isInQueue;
 
     public BotState checkingStateDebug = BotState.Idle;
 
@@ -130,6 +131,7 @@ public class BotAI : AI {
                 if (ReachedDest())
                 {
                     RotateTowards(destination.GetComponent<Transform>());
+                    isInQueue = true;
                 }
                 break;
 
@@ -156,7 +158,7 @@ public class BotAI : AI {
                     //player.avUses.currentUses[player.triggerObj.GetComponent<Usable>()]["Order"](player);
 
                     if (player.hasQueueAfter)
-                        player.queuePerson.GetComponent<BotAI>().GetOutQueue();
+                        StartCoroutine(player.queuePerson.GetComponent<BotAI>().GetOutQueue());
 
 
                     SetDestination(table);
@@ -305,11 +307,32 @@ public class BotAI : AI {
             GetInQueue(anotherPerson.queuePerson);
     }
 
-    public void GetOutQueue()
+    public IEnumerator GetOutQueue()
     {
         SetDestination(previousDestination);
         state = previousState;
-        
+        if (isInQueue)
+        {
+            isInQueue = false;
+			navigator.speed = 0;
+            yield return new WaitForSeconds(1);
+            navigator.speed = 10;
+            if (player.hasQueueAfter)
+                StartCoroutine(player.queuePerson.GetComponent<BotAI>().MoveQueue());
+        }
+    }
+
+    public IEnumerator MoveQueue()
+    {
+        if (isInQueue)
+        {
+            navigator.speed = 0;
+            yield return new WaitForSeconds(1);
+            navigator.speed = 10;
+            if (player.hasQueueAfter)
+                StartCoroutine(player.queuePerson.GetComponent<BotAI>().MoveQueue());
+        }
+
     }
 
     public void Rate()
