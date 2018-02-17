@@ -85,7 +85,10 @@ public class BotAI : AI {
 
                 if (whereSpawned == 3)
                 {
-                    navigator.destination = JointManager.jm.spawn4.transform.position;
+                    if (Random.Range(0, 1) > 0)
+                        navigator.destination = JointManager.jm.spawn4.transform.position;
+                    else
+                        navigator.destination = JointManager.jm.spawn2.transform.position;
                 }
                 else if (whereSpawned == 4) navigator.destination = JointManager.jm.spawn3.transform.position;
 
