@@ -23,6 +23,11 @@ public abstract class AI : MonoBehaviour {
 
     public abstract void StateMachine();
 
+    public void SetDestination(Vector3 position)
+    {
+        navigator.destination = position;
+    }
+
     protected void SetDestination(GameObject dest)
     {
         destination = dest;

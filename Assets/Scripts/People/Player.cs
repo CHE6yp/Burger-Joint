@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 
 [SelectionBase]
@@ -62,5 +63,10 @@ public class Player : MonoBehaviour {
         triggerObj = null;
         useShow.SetActive(false);
         useBool = false;
+    }
+
+    public void SetDestination(Vector3 destination)
+    {
+        GetComponent<NavMeshAgent>().SetDestination(destination + new Vector3(0, 0.5f, 0));
     }
 }

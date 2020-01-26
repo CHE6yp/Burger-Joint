@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
             contrl.Move(velocity * Time.fixedDeltaTime);
         }
 
-        cam.transform.position = gameObject.transform.position + camPos;
+        //cam.transform.position = gameObject.transform.position + camPos;
 
         //НАДО ОТДЕЛЬНЫЙ КОНТРОЛЛЕР ДЛЯ АНИМАЦИИ
         if (velocity != new Vector3(0, 0, 0))
@@ -49,17 +49,36 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+
+        Camera.main.transform.Translate(Vector3.forward * Input.GetAxis("Mouse ScrollWheel")*3, Space.Self);
+        if (Input.mousePosition.x > Screen.width - 20)
+            Camera.main.transform.Translate(Vector3.right*0.5f);
+        if (Input.mousePosition.x < 20)
+            Camera.main.transform.Translate(Vector3.left*0.5f);
+        if (Input.mousePosition.y > Screen.height - 20)
+            Camera.main.transform.Translate(Vector3.forward * 0.5f,Space.World);
+        if (Input.mousePosition.y < 20)
+            Camera.main.transform.Translate(Vector3.back * 0.5f,Space.World);
+
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             //over object text
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin, ray.direction * 10);
+            
 
             if (!choseUsable)
             {
                 if (Physics.Raycast(ray, out hit))
                 {
+
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        Debug.Log(player);
+                        player.SetDestination(hit.point + new Vector3(0, 0.5f, 0));
+                        Debug.Log("Clack");
+                    }
                     if (hit.transform.GetComponent<Usable>() != null)
                     {
                         currentUsable = hit.transform.GetComponent<Usable>();
@@ -78,6 +97,7 @@ public class PlayerController : MonoBehaviour {
                             UIManager.uiManager.ContextDraw(hit.transform.gameObject.GetComponent<Usable>(), player);
                             choseUsable = true;
                         }
+
                     }
                     else
                     {
@@ -94,6 +114,12 @@ public class PlayerController : MonoBehaviour {
             {
                 if (Physics.Raycast(ray, out hit))
                 {
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        player.SetDestination(hit.point + new Vector3(0, 0.5f, 0));
+                        Debug.Log("Click");
+                    }
+
                     if (hit.transform.GetComponent<Usable>() != null)
                     {
                         if (Input.GetMouseButtonDown(0))
